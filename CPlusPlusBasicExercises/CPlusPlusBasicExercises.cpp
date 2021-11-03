@@ -4,16 +4,16 @@ using namespace std;
 #include <iomanip>
 
 //A quick function that ouputs space to the console to separate exercises
-void newExercise() {
-    cout << endl;
-    for (int i = 0; i < 80; i++) {
-        cout << '-';
-    }
-    cout << endl << endl;
-}
+void newExercise();
+//Prints out a + b and says if overflow was detected or not.
+void exercise8Addition(int a, int b);
+//Prints out a * b and says if overflow was detected or not.
+void exercise8Multiplication(int a, int b);
+
 int main()
 {
     cout << "This program is to do the practice solutions found on www.w3resource.com/cpp-exercises/basic/index.php" << endl << endl;
+    
     //1. Write a program in C++ to print a welcome text in a separate line. 
     cout << "Exercise 1. Write a program in C++ to print a welcome text in a separate line.\n\n";
     cout << "Welcome!\n";
@@ -106,7 +106,89 @@ int main()
     cout << int1 << " / " << int2 << " = " << int1 / int2 << endl;
     cout << d1 << " / " << d2 << " = " << d1 / d2 << endl;
     cout << int1 << " / " << d2 << " = " << int1 / d2 << endl;
+    newExercise();
+
+    //8. Write a program in C++ to check overflow/underflow during various arithmetical operation.
+    cout << "Exercise 8. Write a program in C++ to check overflow/underflow during various arithmetical operation.\n\n";
+    exercise8Addition(INT_MAX, 2);
+    exercise8Addition(100, 2);
+    exercise8Addition(INT_MIN, -2);
+    exercise8Multiplication((INT_MAX / 2) + 2, 2);
+    exercise8Multiplication((INT_MAX / 2) + 2, -2);
+    exercise8Multiplication(-50, -5);
+    exercise8Multiplication(50, 5);
+    exercise8Multiplication(50, -5);
+    newExercise();
+
+    //9. Write a program in C++ to display the operation of pre and post increment and decrement.
+    cout << "Exercise 9. Write a program in C++ to display the operation of pre and post increment and decrement.\n\n";
+    int ex9Num = 5;
+    cout << "The number x is " << ex9Num << endl;
+    cout << "x = " << ex9Num;
+    cout << ". x++ = " << ex9Num++;
+    cout << ". x now = " << ex9Num << endl;
+
+    cout << "x = " << ex9Num;
+    cout << ". ++x = " << ++ex9Num;
+    cout << ". x now = " << ex9Num << endl;
+
+    cout << "x = " << ex9Num;
+    cout << ". x-- = " << ex9Num--;
+    cout << ". x now = " << ex9Num << endl;
+
+    cout << "x = " << ex9Num;
+    cout << ". --x = " << --ex9Num;
+    cout << ". x now = " << ex9Num << endl;
+    newExercise();
+
+    //10. Write a program in C++ to formatting the output.
+    cout << "Exercise 10. 10. Write a program in C++ to formatting the output.\n\n";
+    double pi = 3.14159265;
+    cout << right;
+    cout << "The value of pi = " << pi << endl;
+    cout << "The value of pi 4 decimal places with a total width of 8 = |" << setw(8) << setprecision(5) << pi << "|" << endl;
+    cout << "The value of pi 4 decimal places with a total width of 10 = |" << setw(10) << setprecision(5) << pi << "|" << endl;
+    cout << "The value of pi 4 decimal places with a total width of 8 = |"  << setfill('-') << setw(8) << setprecision(5) << pi << "|" << endl;
+    cout << "The value of pi 4 decimal places with a total width of 8 = |" << setfill('-') << setw(10) << setprecision(5) << pi << "|" << endl;
+    cout << "The value of pi in scientific format = " << setprecision(4) << scientific << pi << endl;
+    newExercise();
+
 
 
     return 0;
+}
+
+//A quick function that ouputs space to the console to separate exercises
+void newExercise() {
+    cout << endl;
+    for (int i = 0; i < 80; i++) {
+        cout << '-';
+    }
+    cout << endl << endl;
+}
+//returns true if there is an overflow or underflow after the addition.  Result is changed either way
+void exercise8Addition(int a, int b) {
+    int temp = a + b;
+    cout << a << " + " << b << " = " << temp << ". ";
+    if (a > 0 && b > 0 && temp < 0)
+        cout << "Overflow detected!" << endl;
+    else if (a < 0 && b < 0 && temp > 0)
+        cout << "Overflow detected!" << endl;
+    else
+        cout << "No Overflow detected!" << endl;
+}
+//returns true if there is an overflow or underflow after the multiplication.  Result is changed either way
+void exercise8Multiplication(int a, int b) {
+    int temp = a * b;
+    cout << a << " * " << b << " = " << temp << ". ";
+    if (a > 0 && b > 0 && temp < 0)
+        cout << "Overflow detected!" << endl;
+    else if (a < 0 && b < 0 && temp < 0)
+        cout << "Overflow detected!" << endl;
+    else if (a < 0 && b > 0 && temp > 0)
+        cout << "Overflow detected!" << endl;
+    else if (a > 0 && b < 0 && temp > 0)
+        cout << "Overflow detected!" << endl;
+    else
+        cout << "No Overflow detected!" << endl;
 }
